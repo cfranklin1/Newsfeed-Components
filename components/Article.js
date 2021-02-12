@@ -86,6 +86,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Pizza Article Object',
+    date: 'Feb 12th, 2021',
+    firstParagraph: `Pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza 
+          pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+          pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+          pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza`,
+
+    secondParagraph: `Pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza 
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza `,
+
+    thirdParagraph: `Pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza 
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza
+    pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza`
   }
 ];
 
@@ -103,44 +121,47 @@ const data = [
     <span class="expandButton">+</span>
   </div>
 */
-function articleMaker({artObj}) {
-  const div = document.createElement('div');
-  const h2 = document.createElement('h2');
-  const p = document.createElement('p');
-  const p1 = document.createElement('p');
-  const p2 = document.createElement('p');
-  const p3 = document.createElement('p');
+function articleMaker(artObj) {
+  const artDiv = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
   const expanded = document.createElement('span');
 
-  div.appendChild(h2);
-  div.appendChild(p);
-  div.appendChild(p1);
-  div.appendChild(p2);
-  div.appendChild(p3);
-  div.appendChild(expanded)
+  artDiv.appendChild(artTitle);
+  artDiv.appendChild(artDate);
+  artDiv.appendChild(para1);
+  artDiv.appendChild(para2);
+  artDiv.appendChild(para3);
+  artDiv.appendChild(expanded)
 
-  div.classList.add('article');
-  p.classList.add('date');
+  artDiv.classList.add('article');
+  artDate.classList.add('date');
   expanded.classList.add('expandButton');
-
-  h2.textContent = data.title
-  p.textContent = data.date
-  p1.textContent = data.firstParagraph
-  expanded.textContent = data.open 
+  
+  artTitle.textContent = artObj.title,
+  artDate.textContent = artObj.date,
+  para1.textContent = artObj.firstParagraph,
+  para2.textContent = artObj.secondParagraph,
+  para3.textContent = artObj.thirdParagraph
+  expanded.textContent = "+"; 
 /*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 */
   expanded.addEventListener('click', event => {
-    div.classList.toggle('article-open');
+    artDiv.classList.toggle('article-open');
   })
 /*
   Step 3: Don't forget to return something from your function!
 */
-return div;
+return artDiv;
 }
 
 console.log(articleMaker(data));
+
 /*
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
